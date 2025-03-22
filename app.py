@@ -145,7 +145,7 @@ with st.container(border=True):
     st.write("You cant see me")
     st.write("I am Invisible")
 
-st.hader("9. Sidebar")
+st.header("9. Sidebar")
 
 name = st.sidebar.text_input("Enter your name")
 age = st.sidebar.number_input("Enter your age", min_value=1, max_value=100)
