@@ -4,7 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-st.write("Text Elements")
+st.title("Testing all Elements learned")
+
+st.header("1. Text Elements")
 st.title("Title")
 st.header("Header")
 st.subheader("Sub-Header")
@@ -13,7 +15,7 @@ st.markdown("_Markdown_")
 st.caption("caption")
 st.divider()
 
-st.write("Button Element")
+st.header("2. Button Element")
 but = st.button("Button") #everytime something happen like clicking a button, streamlit rerun entirely
 
 st.write("Rendering Code")
@@ -21,7 +23,7 @@ st.code("print(Hello world)", language="python")
 
 st.image("Picture1.png")
 
-st.write("Data Elements")
+st.header("3. Data Elements")
 df = pd.DataFrame({
     "Name" : ["Nagomi", "Maha", "Namitha"],
     "Age" : [21, 22, 21]
@@ -36,7 +38,7 @@ st.json({
     "Age" : [21, 22, 21]
 })
 
-st.write("Charts")
+st.header("4. Charts")
 dt=pd.DataFrame(np.random.randn(20, 3), 
     columns = ["A", "B", "C"])
 
@@ -48,7 +50,7 @@ sc=pd.DataFrame({"x" : np.random.randn(100),
     "y" : np.random.randn(100)})
 st.scatter_chart(sc)
 
-st.write("Form Elements")
+st.header("5. Form Elements")
 
 with st.form(key="my_form"):
     st.subheader("Interactive Elements goes here..")
@@ -106,7 +108,7 @@ if st.button("Click me"):
     st.write(f'your have chosen {tg}')
 
 #Session State
-st.title("Session State")
+st.header("6. Session State")
 if 'counter' not in st.session_state:
     st.session_state.counter = 0
 
@@ -117,7 +119,7 @@ if st.button("Increement"):
 st.write(st.session_state.counter)
 
 
-#Layouts
+st.header("7. Layout")
 tab1, tab2, tab3 = st.tabs(["Tab 1","Tab 2","Tab 3"]) 
 
 with tab1:
@@ -136,14 +138,30 @@ with col1:
 with col2:
     st.write("I am Right")
 
-#Containers
+st.header("8. Container")
 with st.container(border=True):
     st.write("I am inside a container")
     st.write("I am hiding")
     st.write("You cant see me")
     st.write("I am Invisible")
 
+st.hader("9. Sidebar")
+
+name = st.sidebar.text_input("Enter your name")
+age = st.sidebar.number_input("Enter your age", min_value=1, max_value=100)
+gender = st.sidebar.selectbox("Select your gender", ["Male", "Female", "Other"])
+
+if st.sidebar.button("Submit"):
+    st.write(f"Hello {name}, you are {age} years old and identify as {gender}.")
+
+
+#Duplicate Widget Id Issue - use key
+st.header("10. Duplicate Buttons with different Keys")
+st.button("Fill")
+st.button("Fill", key = "bt2")
+
 #Empty Placeholder - lets you change inline text
+st.header("Other")
 ph = st.empty()
 ph.write("I am good girl!")
 
@@ -158,25 +176,7 @@ with st.expander("for more details"):
 #Tooltip
 st.button("Hover", help="This explains why, Dumbass")
 
-#Sidebar Input Handling
-import streamlit as st
-
-st.title("Sidebar Input Example")
-
-# Sidebar text input
-name = st.sidebar.text_input("Enter your name")
-
-# Sidebar number input
-age = st.sidebar.number_input("Enter your age", min_value=1, max_value=100)
-
-# Sidebar select box
-gender = st.sidebar.selectbox("Select your gender", ["Male", "Female", "Other"])
-
-# Sidebar button
-if st.sidebar.button("Submit"):
-    st.write(f"Hello {name}, you are {age} years old and identify as {gender}.")
-
-
-#Duplicate Widget Id Issue - use key
-st.button("Submit")
-st.button("Submit", key = "bt2")
+# [theme]
+# primaryColor = "#4CAF50"
+# backgroundColor = "#F5F5F5"
+# textColor = "#000000"
